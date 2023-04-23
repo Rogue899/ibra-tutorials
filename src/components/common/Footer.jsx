@@ -10,10 +10,9 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-const useStyles = makeStyles((theme) => (console.log(theme),{
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.grey[100],
-    marginTop: theme.spacing(8),
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
   },
