@@ -1,18 +1,24 @@
 const express = require('express');
 const cors = require('cors');
-const homepageRoute = require('./routes/homepage');
+const routes = require('./routes/routes');
+
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
+app.use(cors());
 
-// Example API route
-app.get('/api/example', (req, res) => {
-  res.send({ message: 'Hello from the backend!' });
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://source.unsplash.com;");
+  next();
 });
 
-app.use('/', homepageRoute);
+app.use('/', routes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
