@@ -1,25 +1,24 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Typography, Button } from '@mui/material';
-import HomePageContainer from '../components/HomePageContainer';
 import Testimonials from '../components/Testimonials';
 import FeaturedCourses from '../components/FeaturedCourses';
-import Footer from '../components/common/Footer';
-import NavBar from '../components/common/Navbar';
+import HomePageContainer from '../components/common/HomePageContainer';
 
-const HomePage = () => {
+const HomePage = ({ data }) => {
+  const navigate = useNavigate();
+
   return (
-    <>
-      <NavBar />
-      <HomePageContainer>
-        <Typography variant="h2">Welcome to My Tutoring Website</Typography>
-        <Button variant="contained" color="primary">
+    <HomePageContainer>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+        <Typography variant="h3">{data.home}</Typography>
+        <Button variant="contained" color="primary" onClick={() => navigate('/courses')}>
           Explore Courses
         </Button>
-      </HomePageContainer>
-      <FeaturedCourses />
+      </div>
+      <FeaturedCourses courses={data.courses} />
       <Testimonials />
-      <Footer />
-    </>
+    </HomePageContainer>
   );
 };
 

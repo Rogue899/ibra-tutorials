@@ -1,34 +1,15 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Container, Typography, Box, Grid, Card, CardActionArea, CardMedia, CardContent } from '@mui/material';
-
-const courses = [
-  {
-    id: 1,
-    title: 'Course 1',
-    description: 'This is the first course',
-    image: 'https://source.unsplash.com/random/400x300?sig=1',
-  },
-  {
-    id: 2,
-    title: 'Course 2',
-    description: 'This is the second course',
-    image: 'https://source.unsplash.com/random/400x300?sig=2',
-  },
-  {
-    id: 3,
-    title: 'Course 3',
-    description: 'This is the third course',
-    image: 'https://source.unsplash.com/random/400x300?sig=3',
-  },
-];
+import { useNavigate } from 'react-router-dom';
 
 const FeaturedCoursesWrapper = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.grey[200],
   padding: theme.spacing(4, 0),
 }));
 
-const FeaturedCourses = () => {
+const FeaturedCourses = ({courses}) => {
+  const navigate = useNavigate();
   return (
     <FeaturedCoursesWrapper>
       <Container maxWidth="lg">
@@ -38,10 +19,10 @@ const FeaturedCourses = () => {
           </Typography>
         </Box>
         <Grid container spacing={4}>
-          {courses.map((course) => (
+          {courses?.map((course) => (
             <Grid item key={course.id} xs={12} md={4}>
               <Card>
-                <CardActionArea>
+                <CardActionArea onClick={() => navigate(`/courses/${course.id}`)}>
                   <CardMedia component="img" height="200" image={course.image} alt={course.title} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h3">

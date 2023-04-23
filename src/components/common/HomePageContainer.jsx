@@ -7,8 +7,7 @@ const HomePageContainer = styled('div')(({ theme }) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
-    gap: theme.spacing(2),
+    gap: theme.spacing(10),
 }));
 
 export default HomePageContainer;
